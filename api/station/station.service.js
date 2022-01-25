@@ -74,6 +74,7 @@ async function update(station) {
 
 async function add(station) {
   try {
+    delete station._id
     const collection = await dbService.getCollection('station')
     await collection.insertOne(station)
     return station

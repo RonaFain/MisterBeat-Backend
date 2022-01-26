@@ -6,7 +6,8 @@ module.exports = {
   getCollection,
 }
 
-const dbName = 'misterbeat_db'
+// const dbName = 'misterbeat_db'
+const dbName = 'MISTERBEAT_DB'
 
 var dbConn = null
 

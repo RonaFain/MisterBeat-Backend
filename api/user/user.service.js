@@ -69,6 +69,7 @@ async function update(user) {
       userName: user.userName,
       likedSongs: user.likedSongs,
       likedStations: user.likedStations,
+      followUsers: user.followUsers
     }
     const collection = await dbService.getCollection('user')
     await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })
@@ -86,7 +87,8 @@ async function add(user) {
       password: user.password,
       imgUrl: user.imgUrl,
       likedSongs: [],
-      likedStations: []
+      likedStations: [],
+      followUsers: []
     }
     const collection = await dbService.getCollection('user')
     await collection.insertOne(userToAdd)

@@ -28,8 +28,18 @@ function connectSockets(http, session) {
         //     socket.broadcast.emit('song like', newActivity);
         // })
 
-        socket.on('changeSong', newActivity => {
-            socket.broadcast.emit('songChanged', newActivity);
+        socket.on('changeSongs', songs => {
+            socket.broadcast.emit('songsChanged', songs);
+        })
+
+        socket.on('addFollow', userId => {
+            // console.log('sockectttttt?' , socket.clientObj[token]);
+            // socket.emit('follow you', userId);
+            socket.to(socket.id).emit('follow you', userId);
+        })
+
+        socket.on('addStation', station => {
+            socket.broadcast.emit('stationAdded', station);
         })
     })
 }
@@ -37,6 +47,3 @@ function connectSockets(http, session) {
 module.exports = {
     connectSockets,
 }
-
-
-

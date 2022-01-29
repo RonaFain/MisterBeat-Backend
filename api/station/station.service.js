@@ -11,7 +11,9 @@ module.exports = {
 }
 
 async function query(filterBy = {}) {
-  const criteria = _buildCriteria(filterBy)
+  // const criteria = _buildCriteria(filterBy)
+  let criteria;
+  if(filterBy.txt) criteria = {'createdBy._id': filterBy.txt}
   try {
     const collection = await dbService.getCollection('station')
     var stations = await collection.find(criteria).toArray()
@@ -90,12 +92,10 @@ function _buildCriteria(filterBy) {
     const txtCriteria = { $regex: filterBy.txt, $options: 'i' }
     criteria.$or = [
       {
-        name: txtCriteria,
+          createdBy: { "_id": filterBy.txt}
       },
-      {
-        genre: txtCriteria,
-      },
-    ]
+  ]
+    
   }
   return criteria
 }

@@ -9,8 +9,9 @@ module.exports = {
 }
 
 async function getActivitieslog(req, res) {
+  const filterBy = req.query
   try {
-    const activitieslog = await activitylogService.query()
+    const activitieslog = await activitylogService.query(filterBy)
     res.send(activitieslog)
   } catch (err) {
     logger.error('Failed to get activities log', err)

@@ -9,14 +9,28 @@ module.exports = {
   update,
 }
 
-async function query() {
+async function query(filterBy) {
+  console.log('before query' , filterBy)
+  const criteria = _buildCriteria(filterBy) 
+  console.log('after query' , filterBy)
   try {
     const collection = await dbService.getCollection('activitylog')
-    return await collection.find().toArray()
+    return await collection.find(criteria).toArray()
   } catch (err) {
     logger.error('cannot find activities log', err)
     throw err
   }
+}
+
+function _buildCriteria(filterBy) {
+  const criteria = {}
+  if(filterBy.userId) {
+    criteria.$and = [
+      {['createdBy._id']: {$not: { $regex: filterBy.userId }}},
+      {['createdBy._id']: {$in: filterBy.followers}}
+    ] 
+  }
+  return criteria
 }
 
 async function getById(activitylogId) {

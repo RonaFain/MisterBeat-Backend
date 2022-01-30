@@ -14,6 +14,8 @@ async function getStations(req, res) {
     const filterBy = {
       txt: req.query?.userid || '',
     }
+    console.log('req.query' , req.query);
+    console.log('filterBy' , filterBy);
     const stations = await stationService.query(filterBy)
     res.send(stations)
   } catch (err) {

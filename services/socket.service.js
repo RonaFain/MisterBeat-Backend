@@ -24,22 +24,16 @@ function connectSockets(http, session) {
       console.log('joined to', socket.stationId);
     });
 
-    // socket.on('like song', newActivity => {
-    //     socket.broadcast.emit('song like', newActivity);
-    // })
-
     socket.on('changeSongs', (songs) => {
       socket.broadcast.emit('songsChanged', songs);
     });
 
-    socket.on('addFollow', (userId) => {
-      // console.log('sockectttttt?' , socket.clientObj[token]);
-      // socket.emit('follow you', userId);
-      socket.to(socket.id).emit('follow you', userId);
+    socket.on('addActivity', (activitylog) => {
+      socket.broadcast.emit('activityAdded', activitylog);
     });
 
-    socket.on('addStation', (station) => {
-      socket.broadcast.emit('stationAdded', station);
+    socket.on('addFollow', (userId) => {
+      socket.to(socket.id).emit('followYou', userId);
     });
   });
 }

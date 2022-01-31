@@ -10,9 +10,7 @@ module.exports = {
 }
 
 async function query(filterBy) {
-  console.log('before query' , filterBy)
   const criteria = _buildCriteria(filterBy) 
-  console.log('after query' , filterBy)
   try {
     const collection = await dbService.getCollection('activitylog')
     return await collection.find(criteria).toArray()

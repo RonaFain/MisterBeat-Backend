@@ -8,6 +8,8 @@ module.exports = {
   updateActivitylog,
 }
 
+
+// backend - controller
 async function getActivitieslog(req, res) {
   const filterBy = req.query
   try {

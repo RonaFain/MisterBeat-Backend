@@ -61,6 +61,7 @@ async function update(station) {
       tags: station.tags,
       likedByUsers: station.likedByUsers,
       songs: station.songs,
+      bcgColor: station.bcgColor
     }
     const collection = await dbService.getCollection('station')
     await collection.updateOne(

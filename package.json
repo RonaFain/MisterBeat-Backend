@@ -1,5 +1,5 @@
 {
-  "name": "MisterBeatBackend",
+  "name": "client-array-service",
   "proxy": "http://127.0.0.1:5000/",
   "version": "1.0.0",
   "description": "",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",

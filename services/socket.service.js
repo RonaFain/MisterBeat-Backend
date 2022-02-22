@@ -14,14 +14,14 @@ function connectSockets(http, session) {
     socket.on('disconnect', (socket) => {
       console.log('Someone disconnected');
     });
-    socket.on('station id', (stationId) => {
-      if (socket.stationId === stationId) return;
-      if (socket.stationId) {
-        socket.leave(socket.stationId);
+    socket.on('clientArray id', (clientArrayId) => {
+      if (socket.clientArrayId === clientArrayId) return;
+      if (socket.clientArrayId) {
+        socket.leave(socket.clientArrayId);
       }
-      socket.join(stationId);
-      socket.stationId = stationId;
-      console.log('joined to', socket.stationId);
+      socket.join(clientArrayId);
+      socket.clientArrayId = clientArrayId;
+      console.log('joined to', socket.clientArrayId);
     });
 
     socket.on('changeSongs', (songs) => {
